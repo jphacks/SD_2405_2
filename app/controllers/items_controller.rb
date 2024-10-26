@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+  ## DOTO: create bulk_create method
   def create
     # 消費期限日数から消費期限日を計算
     shelf_life_days = params[:shelf_life_days].to_i
@@ -27,6 +28,18 @@ class ItemsController < ApplicationController
     render json: { error: 'Failed to create item or categories' }, status: :internal_server_error
   end
   
+  def update_status
+    # display_nameが一致し, statusが"used"ではなく, かつ賞味期限及びcreated_atがもっとも古いアイテムを取得
+
+    @item = Item.where(display_name: params[:display_name], status: ['packed', 'unpacked']).order(:expiry_date, :created_at).first
+    # itemが見つからない場合は404エラーを返す
+    return render json: { error: 'Item not found' }, status: :not_found unless @item
+    
+    # statusをparams[:status]に更新
+    @item.update!(status: params[:status])
+    render json: @item
+  end
+
   def index
     unless params[:user_id].present?
       return render json: { error: 'user_id is required' }, status: :bad_request
