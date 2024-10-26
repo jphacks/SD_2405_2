@@ -41,22 +41,6 @@ userの持つ商品情報を一覧取得する
 response:
 [
     {
-        "id": 5,
-        "display_name": "Sample Item",
-        "generic_name": "Sample Generic",
-        "status": "packed",
-        "category_name": "aaa",
-        "expiry_date": null
-    },
-    {
-        "id": 6,
-        "display_name": "Sample Item",
-        "generic_name": "Sample Generic",
-        "status": "packed",
-        "category_name": "aaa",
-        "expiry_date": null
-    },
-    {
         "id": 7,
         "display_name": "Sample Item",
         "generic_name": "Sample Generic",
