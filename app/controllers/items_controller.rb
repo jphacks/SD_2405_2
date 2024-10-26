@@ -1,12 +1,16 @@
 class ItemsController < ApplicationController
-    def create        
-        # カテゴリ名をパラメータから取得
-        category_name = item_params[:category_name]
+    def create
+        # 消費期限日数から消費期限日を計算
+        shelf_life_days = params[:shelf_life_days].to_i
+        expiry_date = Date.today + shelf_life_days.days
+        # category_nameを取得
+        category_name = params[:category_name].to_s
+
         # カテゴリが存在しない場合は新規作成
         category = Category.find_or_create_by(name: category_name)
       
         # Itemの新規作成時に関連付け
-        @item = Item.new(item_params.except(:category_name))
+        @item = Item.new(item_params.merge(expiry_date: expiry_date))
         @item.category = category
         if !category.save
             render json: { error: 'Failed to create category' }, status: :internal_server_error
@@ -34,7 +38,7 @@ class ItemsController < ApplicationController
           generic_name: item.generic_name,
           status: item.status,
           category_name: item.category.name,  # categoryのnameを取得
-          user_id: item.user_id
+          expiry_date: item.expiry_date
         }
       end
   
@@ -44,7 +48,7 @@ class ItemsController < ApplicationController
     private
   
     def item_params
-      params.require(:item).permit(:category_name, :display_name, :generic_name, :status, :user_id)  # Strong Parameters
+      params.require(:item).permit(:display_name, :generic_name, :status, :user_id)  # Strong Parameters
     end
   end
   
