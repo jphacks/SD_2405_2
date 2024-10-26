@@ -83,4 +83,8 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  ENV["HOSTS"]&.split(",")&.each do |host|
+    config.hosts << host
+  end
 end
