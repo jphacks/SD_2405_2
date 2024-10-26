@@ -25,12 +25,13 @@ response:
 request:
 {
   "item": {
-    "category_name": "aaa",
     "display_name": "Sample Item",
     "generic_name": "Sample Generic",
     "status": "packed",
     "user_id": 1
-  }
+  },
+  "category_name": "aaa",
+  "shelf_life_days": 30
 }
 ```
 
@@ -45,7 +46,23 @@ response:
         "generic_name": "Sample Generic",
         "status": "packed",
         "category_name": "aaa",
-        "user_id": 1
+        "expiry_date": null
+    },
+    {
+        "id": 6,
+        "display_name": "Sample Item",
+        "generic_name": "Sample Generic",
+        "status": "packed",
+        "category_name": "aaa",
+        "expiry_date": null
+    },
+    {
+        "id": 7,
+        "display_name": "Sample Item",
+        "generic_name": "Sample Generic",
+        "status": "packed",
+        "category_name": "aaa",
+        "expiry_date": "2024-11-25"
     }
 ]
 ```
