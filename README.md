@@ -1,24 +1,65 @@
-# README
+## API examples
+### [POST] /users
+ユーザーの登録を行う
+```
+request:
+{
+  "user": {
+    "name": "John Doe",
+    "email": "john@example.com",
+  }
+}
+response:
+{
+  message: "User created successfully",
+  user: @user }, status: :created
+}
+```
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### [GET] /users
+ユーザーの一覧情報を取得する
 
-Things you may want to cover:
+### [POST] /items
+商品情報を登録する
+```
+request:
+{
+  "item": {
+    "category_name": "aaa",
+    "display_name": "Sample Item",
+    "generic_name": "Sample Generic",
+    "status": "packed",
+    "user_id": 1
+  }
+}
+```
 
-* Ruby version
+### [GET] /items?user_id=xx
+userの持つ商品情報を一覧取得する
+```
+response:
+[
+    {
+        "id": 5,
+        "display_name": "Sample Item",
+        "generic_name": "Sample Generic",
+        "status": "packed",
+        "category_name": "aaa",
+        "user_id": 1
+    }
+]
+```
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### [GET] /categories
+全てのカテゴリー情報を取得する
+```
+response:
+[
+    {
+        "id": 1,
+        "name": "aaa",
+        "created_at": "2024-10-26T09:50:06.749Z",
+        "updated_at": "2024-10-26T09:50:06.749Z"
+    }
+]
+```
