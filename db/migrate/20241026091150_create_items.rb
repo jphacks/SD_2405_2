@@ -1,7 +1,5 @@
 class CreateItems < ActiveRecord::Migration[6.0]
   def change
-    drop_table :items if ActiveRecord::Base.connection.table_exists?(:items)
-
     create_table :items do |t|
       t.integer :category_id
       t.string :display_name

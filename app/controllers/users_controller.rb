@@ -7,6 +7,11 @@ class UsersController < ApplicationController
         render json: { errors: @user.errors.full_messages }, status: :unprocessable_entity
       end
     end
+    
+    def index
+      @users = User.all  # すべてのユーザーを取得
+      render json: @users  # JSON形式で返す
+    end
   
     private
   
