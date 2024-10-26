@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   # root "articles#index"
   resources :users, only: [:create, :index]
   resources :items, only: [:create, :index]
+  resources :categories, only: [:index]
 end

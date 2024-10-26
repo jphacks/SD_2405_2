@@ -13,7 +13,6 @@ class ItemsController < ApplicationController
             return
         end
             
-      
         if @item.save
           render json: @item, status: :created  # 成功した場合、201 Created ステータスを返す
         else
