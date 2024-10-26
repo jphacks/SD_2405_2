@@ -1,5 +1,6 @@
 class Category < ApplicationRecord
-    #has_many :items  # Itemモデルとの関連付け
+    has_many :item_categories
+    has_many :items, through: :item_categories
   
     validates :name, presence: true, uniqueness: true  # nameのバリデーション
   end
