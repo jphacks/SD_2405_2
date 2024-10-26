@@ -25,13 +25,13 @@ response:
 request:
 {
   "item": {
-    "display_name": "Sample Item",
-    "generic_name": "Sample Generic",
+    "display_name": "Sample Item2",
+    "generic_name": "Sample",
     "status": "packed",
     "user_id": 1
   },
-  "category_name": "aaa",
-  "shelf_life_days": 30
+  "shelf_life_days": 30,
+  "category_names": ["Food", "Shampoo"]
 }
 ```
 
@@ -41,11 +41,25 @@ userの持つ商品情報を一覧取得する
 response:
 [
     {
-        "id": 7,
+        "id": 1,
         "display_name": "Sample Item",
-        "generic_name": "Sample Generic",
+        "generic_name": "Sample",
         "status": "packed",
-        "category_name": "aaa",
+        "category_names": [
+            "Food",
+            "Snack"
+        ],
+        "expiry_date": "2024-11-25"
+    },
+    {
+        "id": 2,
+        "display_name": "Sample Item2",
+        "generic_name": "Sample",
+        "status": "packed",
+        "category_names": [
+            "Food",
+            "Shampoo"
+        ],
         "expiry_date": "2024-11-25"
     }
 ]
@@ -58,9 +72,25 @@ response:
 [
     {
         "id": 1,
-        "name": "aaa",
-        "created_at": "2024-10-26T09:50:06.749Z",
-        "updated_at": "2024-10-26T09:50:06.749Z"
+        "display_name": "Sample Item",
+        "generic_name": "Sample",
+        "status": "packed",
+        "category_names": [
+            "Food",
+            "Snack"
+        ],
+        "expiry_date": "2024-11-25"
+    },
+    {
+        "id": 2,
+        "display_name": "Sample Item2",
+        "generic_name": "Sample",
+        "status": "packed",
+        "category_names": [
+            "Food",
+            "Shampoo"
+        ],
+        "expiry_date": "2024-11-25"
     }
 ]
 ```
