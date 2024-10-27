@@ -1,5 +1,25 @@
 class ItemsController < ApplicationController
   ## DOTO: create bulk_create method
+  def upsert
+    # statusがunpackedならば新規作成、それ以外ならばUpsert
+    if status == 'unpacked'
+      p "not unpacked"
+      create
+    end
+    
+    # display_nameが一致し, statusが"used"ではなく, かつ賞味期限及びcreated_atがもっとも古いアイテムを取得
+    @item = Item.where(display_name: item_params[:display_name], status: ['packed', 'unpacked']).order(:expiry_date, :created_at).first
+    # itemが見つからない場合は新規作成
+    unless @item
+      p "not found"
+      return create
+    end
+
+    # statusをparams[:status]に更新
+    @item.update!(status: item_params[:status])
+    render json: @item 
+  end
+  
   def create
     # 消費期限日数から消費期限日を計算
     shelf_life_days = params[:shelf_life_days].to_i
