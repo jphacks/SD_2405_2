@@ -35,6 +35,15 @@ request:
 }
 ```
 
+### [PATCH] /items/update_status
+商品のステータス情報を更新する
+```
+{
+    "display_name": "Sample Item2",
+    "status": "unpacked"
+}
+```
+
 ### [GET] /items?user_id=xx
 userの持つ商品情報を一覧取得する
 ```
