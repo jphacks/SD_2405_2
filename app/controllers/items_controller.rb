@@ -65,7 +65,7 @@ class ItemsController < ApplicationController
       return render json: { error: 'user_id is required' }, status: :bad_request
     end
   
-    @items = Item.where(user_id: params[:user_id])  # user_idでフィルタリング
+    @items = Item.where(user_id: params[:user_id], status: ['packed', 'unpacked'])  # user_idでフィルタリング
   
     # カテゴリー名を含む形式でアイテムを整形
     @items = @items.includes(:categories).map do |item|
